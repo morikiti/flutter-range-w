@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './next_page.dart';
+final myController = TextEditingController();
 void main() {
   runApp(const MyApp());
 }
@@ -41,31 +42,44 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    String name;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-        actions: [
-          Icon(Icons.add),
-          Icon(Icons.share),
-        ],
       ),
       body: Container(
+        width: double.infinity,
         child: Column(
           children: [
-            Image.network(
-                'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
+            TextField(
+              decoration: InputDecoration(
+                hintText: '名前',
+              ),
+               onChanged: (text) {
+                 name = text;
+                },
+              },
+            ),
+            TextField(
+              decoration: InputDecoration(
+                hintText: '趣味',
+              ),
+            ),
             ElevatedButton(
-              child:Text('次へ'),
-              onPressed: (){
-                //ボタンを押した時の処理
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => NextPage('タッチワゴン')),
-                );
+              child: Text('新規登録'),
+              onPressed: () {
+                final hobbyText = myController.text;
               },
             ),
           ],
         ),
+       /* child: TextField(
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: 'Enter a serch term',
+          ),
+          autofocus: true,
+        ),*/
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
