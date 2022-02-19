@@ -35,25 +35,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   final wController = TextEditingController();
   final houseController = TextEditingController();
   final timeController = TextEditingController();
   int res = 0;
-//  String name;
-
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-  String inputText = "First";
-  void setText (String s) {
-    setState(() {
-      inputText = s;
-    });
-  }
 
   double result = 0;
   void mathResult(String kw,String hw, String time){
@@ -98,33 +83,14 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               child: Text('変換W'),
               onPressed: () {
-                final hobbyText = timeController.text;
-                print("okeoke");
-                print(hobbyText);
-              },
-            ),
-            GestureDetector(
-              onTap: () {
                 mathResult(wController.text, houseController.text,timeController.text);
               },
-              child: Text("押せ"),
             ),
-            Text(result.toString()),
+            Text(result.toString()+"秒"),
           ],
         ),
-       /* child: TextField(
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: 'Enter a serch term',
-          ),
-          autofocus: true,
-        ),*/
+
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
