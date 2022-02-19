@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import './next_page.dart';
-final myController = TextEditingController();
+//final myController = TextEditingController();
+//String name;
+
 void main() {
   runApp(const MyApp());
 }
@@ -33,16 +35,25 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  final myController = TextEditingController();
+//  String name;
+
 
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
   }
+  String inputText = "First";
+  void setText (String s) {
+    setState(() {
+      inputText = s;
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
-    String name;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -55,12 +66,14 @@ class _MyHomePageState extends State<MyHomePage> {
               decoration: InputDecoration(
                 hintText: '名前',
               ),
+               controller: myController,
                onChanged: (text) {
-                 name = text;
+                 //name = text;
+                // print(name);
                 },
-              },
             ),
             TextField(
+              controller: myController,
               decoration: InputDecoration(
                 hintText: '趣味',
               ),
@@ -69,8 +82,17 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text('新規登録'),
               onPressed: () {
                 final hobbyText = myController.text;
+                print("okeoke");
+                print(hobbyText);
               },
             ),
+            GestureDetector(
+              onTap: () {
+                setText(myController.text);
+              },
+              child: Text("押せ"),
+            ),
+            Text(inputText),
           ],
         ),
        /* child: TextField(
