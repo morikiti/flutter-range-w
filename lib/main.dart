@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import './next_page.dart';
 //final myController = TextEditingController();
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.green,
       ),
-      home: const MyHomePage(title: 'サンプルアプリ'),
+      home: const MyHomePage(title: 'W変換アプリ'),
     );
   }
 }
@@ -35,7 +36,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  final myController = TextEditingController();
+  final wController = TextEditingController();
+  final houseController = TextEditingController();
+  final timeController = TextEditingController();
+  int res = 0;
 //  String name;
 
 
@@ -48,6 +52,13 @@ class _MyHomePageState extends State<MyHomePage> {
   void setText (String s) {
     setState(() {
       inputText = s;
+    });
+  }
+
+  double result = 0;
+  void mathResult(String kw,String hw, String time){
+    setState(() {
+      result = double.parse(kw) / double.parse(hw) * double.parse(time);
     });
   }
 
@@ -64,35 +75,41 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             TextField(
               decoration: InputDecoration(
-                hintText: '名前',
+                hintText: '記載W',
               ),
-               controller: myController,
+               controller: wController,
                onChanged: (text) {
                  //name = text;
                 // print(name);
                 },
             ),
             TextField(
-              controller: myController,
+              controller: houseController,
               decoration: InputDecoration(
-                hintText: '趣味',
+                hintText: '自宅レンジーW',
+              ),
+            ),
+            TextField(
+              controller: timeController,
+              decoration: InputDecoration(
+                hintText: '記載時間',
               ),
             ),
             ElevatedButton(
-              child: Text('新規登録'),
+              child: Text('変換W'),
               onPressed: () {
-                final hobbyText = myController.text;
+                final hobbyText = timeController.text;
                 print("okeoke");
                 print(hobbyText);
               },
             ),
             GestureDetector(
               onTap: () {
-                setText(myController.text);
+                mathResult(wController.text, houseController.text,timeController.text);
               },
               child: Text("押せ"),
             ),
-            Text(inputText),
+            Text(result.toString()),
           ],
         ),
        /* child: TextField(
