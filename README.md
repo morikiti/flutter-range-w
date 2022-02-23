@@ -1,6 +1,6 @@
-# myapp
+# 電子レンジのwから秒数出すやつ
 
-A new Flutter project.
+
 
 ## Getting Started
 
